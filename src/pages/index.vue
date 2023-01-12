@@ -4,16 +4,41 @@ defineOptions({
 })
 
 interface Item {
+  id: number
   text: string
   isChecked: boolean
 }
+const ITEMS_INIT: Item[] = [
+  {
+    id: 0,
+    text: 'a',
+    isChecked: false,
+  },
+  {
+    id: 1,
+    text: 'b',
+    isChecked: false,
+  },
+  {
+    id: 2,
+    text: 'c',
+    isChecked: true,
+  },
+  {
+    id: 3,
+    text: 'd',
+    isChecked: true,
+  },
+]
+const lastID = $ref(3)
+
 const vFocus = {
   mounted: (el: HTMLInputElement) => el.focus(),
 }
 const input: null | HTMLInputElement = $ref(null)
 
 let inputText = $ref('')
-const items: Item[] = $ref([])
+const items: Item[] = $ref(ITEMS_INIT)
 
 const checkedItems = computed(() => {
   return items.filter(item => item.isChecked)
@@ -22,9 +47,14 @@ const uncheckedItems = computed(() => {
   return items.filter(item => !item.isChecked)
 })
 
+// const updateItem = (index: number): void => {
+//   items[index].isChecked = !items[index].isChecked
+// }
+
 const add = () => {
   if (inputText) {
     items.unshift({
+      id: lastID + 1,
       text: inputText,
       isChecked: false,
     })
@@ -66,7 +96,7 @@ const add = () => {
     >
       <ul p="x-4" flex flex-col gap-4>
         <li
-          v-for="(item, index) in uncheckedItems" :key="`unchecked-${index}`"
+          v-for="item in uncheckedItems" :key="item.id"
           flex justify-between
         >
           {{ item.text }}
@@ -87,19 +117,19 @@ const add = () => {
       </p>
       <ul mt-4 flex flex-col gap-4>
         <li
-          v-for="(item, index) in checkedItems" :key="`checked-${index}`"
+          v-for="item in checkedItems" :key="item.id"
           flex justify-between
         >
-          <label :for="String(index)">
+          <label :for="String(item.id)">
             {{ item.text }}
           </label>
 
           <input
-            :id="String(index)"
+            :id="String(item.id)"
             v-model="item.isChecked"
-            :value="String(index)"
             type="checkbox"
-            w-8 h-8
+            w-8
+            h-8
           >
         </li>
       </ul>
