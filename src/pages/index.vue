@@ -99,12 +99,11 @@ const add = () => {
           v-for="item in uncheckedItems" :key="item.id"
           flex justify-between
         >
-          {{ item.text }}
-          <input
-            v-model="item.isChecked"
-            type="checkbox"
-            w-8 h-8
-          >
+          <label :for="String(item.id)" class="grow-1">
+            {{ item.text }}
+          </label>
+
+          <input :id="String(item.id)" v-model="item.isChecked" type="checkbox" w-8 h-8>
         </li>
       </ul>
     </div>
@@ -120,7 +119,7 @@ const add = () => {
           v-for="item in checkedItems" :key="item.id"
           flex justify-between
         >
-          <label :for="String(item.id)">
+          <label :for="String(item.id)" class="grow-1">
             {{ item.text }}
           </label>
 
