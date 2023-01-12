@@ -32,10 +32,10 @@ const ITEMS_INIT: Item[] = [
 ]
 const lastID = $ref(3)
 
-const vFocus = {
-  mounted: (el: HTMLInputElement) => el.focus(),
-}
-const input: null | HTMLInputElement = $ref(null)
+const input = $ref<HTMLInputElement>()
+onMounted(() => {
+  input?.focus()
+})
 
 let inputText = $ref('')
 const items: Item[] = $ref(ITEMS_INIT)
@@ -52,16 +52,17 @@ const uncheckedItems = computed(() => {
 // }
 
 const add = () => {
-  if (inputText) {
-    items.unshift({
-      id: lastID + 1,
-      text: inputText,
-      isChecked: false,
-    })
-    inputText = ''
-    if (input !== null)
-      input.focus()
-  }
+  if (!inputText)
+    return
+
+  items.unshift({
+    id: lastID + 1,
+    text: inputText,
+    isChecked: false,
+  })
+  inputText = ''
+
+  input?.focus()
 }
 </script>
 
@@ -72,7 +73,6 @@ const add = () => {
         id="input"
         ref="input"
         v-model.trim="inputText"
-        v-focus
         type="text" p="x-4 y-2" bg="transparent"
         font="900"
         class="font-900 juicy-border" outline="none active:none"
