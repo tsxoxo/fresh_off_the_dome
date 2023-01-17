@@ -26,11 +26,6 @@ export default defineConfig({
       scale: 1.2,
       warn: true,
     }),
-    presetWebFonts({
-      fonts: {
-        sans: 'Arial',
-      },
-    }),
   ],
   // transformers: [
   //   transformerDirectives(),
