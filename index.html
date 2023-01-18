@@ -7,8 +7,8 @@
   <title>offthedome</title>
   <meta name="description" content="offthedome">
 </head>
-<body class="grid place-content-center place-items-center grid-cols-[100%] font-sans text-dark dark:text-light  dark:bg-hex-121212">
-  <div id="app" grid w-full max-h-5xl max-w-2xl md:juicy-border></div>
+<body flex justify-center font-sans text-dark dark:text-light  dark:bg-hex-121212>
+  <div id="app" class="grid-rows-[1fr_auto]" grid gap-4 max-w-xl p="x-4 y-4" md:h-2xl md:my-auto md:juicy-border></div>
   <script>
     (function () {
       const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches

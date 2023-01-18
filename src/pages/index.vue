@@ -67,15 +67,17 @@ const add = () => {
 </script>
 
 <template>
-  <div grid gap-4>
-    <div w="full" flex gap-3>
+  <main min-h-0 flex flex-col gap-4>
+    <div flex gap-3>
       <input
         id="input"
         ref="input"
         v-model.trim="inputText"
-        type="text" p="x-4 y-2" bg="transparent"
+        type="text"
+        grow-1
+        p="x-4 y-2" bg="transparent"
         font="900"
-        class="font-900 juicy-border" outline="none active:none"
+        class="juicy-border" outline="none active:none"
         @keydown.enter="add"
       >
       <button
@@ -91,6 +93,8 @@ const add = () => {
       </button>
     </div>
     <div
+      grow
+      overflow-scroll
       py-4
       juicy-border
     >
@@ -133,5 +137,5 @@ const add = () => {
         </li>
       </ul>
     </div>
-  </div>
+  </main>
 </template>
