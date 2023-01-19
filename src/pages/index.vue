@@ -13,22 +13,22 @@ interface Item {
 const ITEMS_INIT: Item[] = [
   {
     id: 0,
-    text: 'a',
+    text: 'things',
     isChecked: false,
   },
   {
     id: 1,
-    text: 'b',
+    text: 'that go',
     isChecked: false,
   },
   {
     id: 2,
-    text: 'c',
-    isChecked: true,
+    text: 'on a list',
+    isChecked: false,
   },
   {
     id: 3,
-    text: 'd',
+    text: 'look here',
     isChecked: true,
   },
 ]
