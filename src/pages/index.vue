@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useStorage } from '@vueuse/core'
+
 defineOptions({
   name: 'IndexPage',
 })
@@ -38,7 +40,8 @@ onMounted(() => {
 })
 
 let inputText = $ref('')
-const items: Item[] = $ref(ITEMS_INIT)
+// const items: Item[] = $ref(ITEMS_INIT)
+const items = $(useStorage('items', ITEMS_INIT))
 
 const checkedItems = computed(() => {
   return items.filter(item => item.isChecked)
